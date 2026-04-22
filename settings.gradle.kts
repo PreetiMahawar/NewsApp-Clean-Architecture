@@ -23,3 +23,4 @@ rootProject.name = "NewsApp-Clean-Architecture"
 include(":app")
 include(":utils")
 include(":data")
+include(":domain")

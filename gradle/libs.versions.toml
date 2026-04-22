@@ -13,6 +13,7 @@ jetbrainsKotlinJvm = "2.0.21"
 retrofit = "3.0.0"
 daggerHilt = "2.57"
 devtoolsKsp = "2.2.0-2.0.2"
+gson = "2.13.1"
 
 
 [libraries]
@@ -27,7 +28,7 @@ androidx-constraintlayout = { group = "androidx.constraintlayout", name = "const
 
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 retrofit-converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
-
+gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 
 dagger-hilt = { module = "com.google.dagger:hilt-android", version.ref = "daggerHilt" }
 dagger-hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "daggerHilt" }
