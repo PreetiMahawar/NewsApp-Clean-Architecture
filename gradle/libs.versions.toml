@@ -10,6 +10,10 @@ material = "1.13.0"
 activity = "1.13.0"
 constraintlayout = "2.2.1"
 jetbrainsKotlinJvm = "2.0.21"
+retrofit = "3.0.0"
+daggerHilt = "2.57"
+devtoolsKsp = "2.2.0-2.0.2"
+
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -21,8 +25,19 @@ material = { group = "com.google.android.material", name = "material", version.r
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 
+retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+retrofit-converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
+
+
+dagger-hilt = { module = "com.google.dagger:hilt-android", version.ref = "daggerHilt" }
+dagger-hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "daggerHilt" }
+
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
+android-library = { id = "com.android.library", version.ref = "agp" }
+devtools-ksp = { id = "com.google.devtools.ksp", version.ref = "devtoolsKsp" }
+dagger-hilt-plugin = { id = "com.google.dagger.hilt.android", version.ref = "daggerHilt" }
 
