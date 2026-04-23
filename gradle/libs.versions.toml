@@ -1,17 +1,13 @@
 [versions]
 agp = "8.11.2"
-kotlin = "2.0.21"
+kotlin = "2.2.0"
 coreKtx = "1.18.0"
 activityCompose = "1.10.1"
 composeBom = "2025.07.00"
 coil = "2.7.0"
 junitVersion = "1.3.0"
 espressoCore = "3.7.0"
-appcompat = "1.7.1"
 material = "1.13.0"
-activity = "1.13.0"
-constraintlayout = "2.2.1"
-jetbrainsKotlinJvm = "2.0.21"
 retrofit = "3.0.0"
 daggerHilt = "2.57"
 devtoolsKsp = "2.2.0-2.0.2"
@@ -28,11 +24,9 @@ composePlugin = "2.2.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-runtime = { module = "androidx.compose.runtime:runtime" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
-androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
-androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
-androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
 compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
 compose-ui = { module = "androidx.compose.ui:ui" }
@@ -56,12 +50,14 @@ compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+runtime = { module = "androidx.compose.runtime:runtime" }
 
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm" }
+java-library = { id = "java-library" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 devtools-ksp = { id = "com.google.devtools.ksp", version.ref = "devtoolsKsp" }
 dagger-hilt-plugin = { id = "com.google.dagger.hilt.android", version.ref = "daggerHilt" }

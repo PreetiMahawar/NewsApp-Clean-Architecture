@@ -26,17 +26,19 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
-    kotlinOptions {
-        jvmTarget = "11"
+
+    kotlin {
+        jvmToolchain(21)
     }
 }
 
 dependencies {
 
     implementation(project(":utils"))
+    implementation(project(":domain"))
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.gson)
     implementation(libs.dagger.hilt)
