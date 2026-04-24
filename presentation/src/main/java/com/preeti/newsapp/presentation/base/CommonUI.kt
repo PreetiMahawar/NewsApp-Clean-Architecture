@@ -29,19 +29,7 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.preeti.newsapp.presentation.R
-import com.preeti.newsapp.presentation.theme.BlueShade1
-import com.preeti.newsapp.presentation.theme.BlueShade2
-import com.preeti.newsapp.presentation.theme.BlueShade3
 import com.preeti.newsapp.presentation.theme.DarkRed
-import com.preeti.newsapp.presentation.theme.PinkShade1
-import com.preeti.newsapp.presentation.theme.PinkShade2
-import com.preeti.newsapp.presentation.theme.PinkShade3
-import com.preeti.newsapp.presentation.theme.PurpleShade1
-import com.preeti.newsapp.presentation.theme.PurpleShade2
-import com.preeti.newsapp.presentation.theme.PurpleShade3
-import com.preeti.newsapp.presentation.theme.YellowShade1
-import com.preeti.newsapp.presentation.theme.YellowShade2
-import com.preeti.newsapp.presentation.theme.YellowShade3
 import com.preeti.newsapp.presentation.theme.customFontFamily
 
 @OptIn(ExperimentalMaterial3Api::class)

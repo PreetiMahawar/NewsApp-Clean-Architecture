@@ -33,7 +33,7 @@ import com.preeti.newsapp.presentation.theme.customFontFamily
 import com.preeti.newsapp.utils.AppConstant
 
 @Composable
-fun StartingRoute(onClick: (name: String) -> Unit) {
+fun StartingRoute(onClick: (screen: ScreenType) -> Unit) {
     Scaffold(topBar = {
         CustomAppBar(title = AppConstant.APP_NAME)
     }, content = { padding ->
@@ -43,7 +43,7 @@ fun StartingRoute(onClick: (name: String) -> Unit) {
 
 
 @Composable
-fun StartingScreen(modifier: Modifier, onClick: (name: String) -> Unit) {
+fun StartingScreen(modifier: Modifier, onClick: (screen: ScreenType) -> Unit) {
     val scrollState: ScrollState = rememberScrollState()
     Column(
         modifier = modifier
@@ -54,36 +54,42 @@ fun StartingScreen(modifier: Modifier, onClick: (name: String) -> Unit) {
         Elements(
             title = stringResource(R.string.top_headlines),
             description = stringResource(R.string.desc_top_headlines),
+            screenName = ScreenType.TopHeadlines,
             GradientType.PINK.colors(),
             onClick
         )
         Elements(
             title = stringResource(R.string.news_sources),
             description = stringResource(R.string.news_by_source),
+            screenName = ScreenType.NewsSources,
             GradientType.BLUE.colors(),
             onClick
         )
         Elements(
             title = stringResource(R.string.languages),
             description = stringResource(R.string.desc_news_by_languages),
+            screenName = ScreenType.Languages,
             GradientType.PINK.colors(),
             onClick
         )
         Elements(
             title = stringResource(R.string.two_languages),
             description = stringResource(R.string.desc_news_by_languages),
+            screenName = ScreenType.TwoLanguages,
             GradientType.BLUE.colors(),
             onClick
         )
         Elements(
             title = stringResource(R.string.countries),
             description = stringResource(R.string.desc_news_by_country),
+            screenName = ScreenType.Countries,
             GradientType.PINK.colors(),
             onClick
         )
         Elements(
             title = stringResource(R.string.search),
             stringResource(R.string.search_news),
+            screenName = ScreenType.Search,
             GradientType.BLUE.colors(),
             onClick
         )
@@ -95,8 +101,9 @@ fun StartingScreen(modifier: Modifier, onClick: (name: String) -> Unit) {
 fun Elements(
     title: String,
     description: String,
+    screenName: ScreenType,
     gradientColorList: List<Color>,
-    onClick: (name: String) -> Unit
+    onClick: (screen: ScreenType) -> Unit
 ) {
 
     Column(
@@ -112,7 +119,7 @@ fun Elements(
                 alpha = 0.8f
             )
             .clickable {
-                onClick(title)
+                onClick(screenName)
             }
             .padding(20.dp)) {
 
@@ -150,7 +157,6 @@ fun DescriptionText(description: String) {
         textAlign = TextAlign.Center
     )
 }
-
 
 
 
