@@ -11,13 +11,15 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.preeti.newsapp.presentation.R
+import com.preeti.newsapp.presentation.newssources.NewsSourcesRoute
 import com.preeti.newsapp.presentation.start.ScreenType
 import com.preeti.newsapp.presentation.start.StartingRoute
 import com.preeti.newsapp.presentation.topheadline.TopHeadlineRoute
 
 sealed class Route(val name: String) {
-    data object StartingScreen: Route("startingScreen")
+    data object StartingScreen : Route("startingScreen")
     data object TopHeadlineScreen : Route("topHeadlineScreen")
+    data object NewsSourcesScreen : Route("newsSourcesScreen")
 }
 
 @Composable
@@ -43,6 +45,17 @@ fun NewsNavHost() {
                 navController.popBackStack()
             })
         }
+
+        composable(route = Route.NewsSourcesScreen.name) {
+            NewsSourcesRoute(
+                titleAppBar = stringResource(R.string.news_sources),
+                onNewsSourceClick = {
+
+                },
+                onBackNavigation = {
+                    navController.popBackStack()
+                })
+        }
     }
 }
 
@@ -54,10 +67,10 @@ fun openCustomChromeTab(context: Context, url: String) {
 
 fun startScreen(type: ScreenType, navController: NavController) {
     when (type) {
-       ScreenType.TopHeadlines -> navController.navigate(Route.TopHeadlineScreen.name)
-        ScreenType.Countries -> "nothing"
+        ScreenType.TopHeadlines -> navController.navigate(Route.TopHeadlineScreen.name)
+        ScreenType.NewsSources -> navController.navigate(Route.NewsSourcesScreen.name)
         ScreenType.Languages -> "nothing"
-        ScreenType.NewsSources -> "nothing"
+        ScreenType.Countries -> "nothing"
         ScreenType.Search -> "nothing"
         ScreenType.TwoLanguages -> "nothing"
     }
