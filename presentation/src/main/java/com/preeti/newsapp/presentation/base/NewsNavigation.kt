@@ -7,10 +7,13 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.core.net.toUri
 import androidx.navigation.NavController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.preeti.newsapp.presentation.R
+import com.preeti.newsapp.presentation.newsbysource.NewsBySourceRoute
 import com.preeti.newsapp.presentation.newssources.NewsSourcesRoute
 import com.preeti.newsapp.presentation.start.ScreenType
 import com.preeti.newsapp.presentation.start.StartingRoute
@@ -20,6 +23,7 @@ sealed class Route(val name: String) {
     data object StartingScreen : Route("startingScreen")
     data object TopHeadlineScreen : Route("topHeadlineScreen")
     data object NewsSourcesScreen : Route("newsSourcesScreen")
+    data object NewsBySourceScreen : Route("newsBySourceScreen/{sourceId}")
 }
 
 @Composable
@@ -50,11 +54,25 @@ fun NewsNavHost() {
             NewsSourcesRoute(
                 titleAppBar = stringResource(R.string.news_sources),
                 onNewsSourceClick = {
-
+                    navController.navigate("newsBySourceScreen/$it")
                 },
                 onBackNavigation = {
                     navController.popBackStack()
                 })
+        }
+
+        composable(
+            route = Route.NewsBySourceScreen.name, arguments = listOf(
+                navArgument("sourceId") {
+                    type = NavType.StringType
+                })
+        ) {
+            val sourceId: String = it.arguments?.getString("sourceId") ?: ""
+            NewsBySourceRoute(sourceId = sourceId, onNewsClick = {
+                openCustomChromeTab(context, it)
+            }, onBackNavigation = {
+                navController.popBackStack()
+            })
         }
     }
 }

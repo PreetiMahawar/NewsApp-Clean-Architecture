@@ -13,5 +13,8 @@ interface NetworkService {
     @GET("top-headlines/sources")
     suspend fun getNewsSources(): NewsSourcesResponse
 
+    @GET("top-headlines")
+    suspend fun getNewsBySourceName(@Query("sources") sources: String): TopHeadlinesResponse
+
 }
 
