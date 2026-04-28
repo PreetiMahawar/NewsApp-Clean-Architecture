@@ -1,5 +1,6 @@
 package com.preeti.newsapp.data.di.module
 
+import com.google.gson.Gson
 import com.preeti.newsapp.data.api.ApiKeyInterceptor
 import com.preeti.newsapp.data.api.NetworkService
 import com.preeti.newsapp.data.di.BaseUrl
@@ -41,6 +42,10 @@ class NetworkModule {
     @Singleton
     fun provideOkHttpClient(apiKeyInterceptor: ApiKeyInterceptor): OkHttpClient =
         OkHttpClient().newBuilder().addInterceptor(apiKeyInterceptor).build()
+
+    @Provides
+    @Singleton
+    fun provideGson() = Gson()
 
     @Provides
     @Singleton

@@ -13,6 +13,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.preeti.newsapp.presentation.R
+import com.preeti.newsapp.presentation.languages.LanguagesRoute
 import com.preeti.newsapp.presentation.newsbysource.NewsBySourceRoute
 import com.preeti.newsapp.presentation.newssources.NewsSourcesRoute
 import com.preeti.newsapp.presentation.start.ScreenType
@@ -24,6 +25,7 @@ sealed class Route(val name: String) {
     data object TopHeadlineScreen : Route("topHeadlineScreen")
     data object NewsSourcesScreen : Route("newsSourcesScreen")
     data object NewsBySourceScreen : Route("newsBySourceScreen/{sourceId}")
+    data object LanguagesScreen : Route("languagesScreen")
 }
 
 @Composable
@@ -74,6 +76,15 @@ fun NewsNavHost() {
                 navController.popBackStack()
             })
         }
+
+
+        composable(route = Route.LanguagesScreen.name) {
+            LanguagesRoute(onLanguageClick = {
+
+            }, onBackNavigation = {
+                navController.popBackStack()
+            })
+        }
     }
 }
 
@@ -87,10 +98,10 @@ fun startScreen(type: ScreenType, navController: NavController) {
     when (type) {
         ScreenType.TopHeadlines -> navController.navigate(Route.TopHeadlineScreen.name)
         ScreenType.NewsSources -> navController.navigate(Route.NewsSourcesScreen.name)
-        ScreenType.Languages -> "nothing"
-        ScreenType.Countries -> "nothing"
+        ScreenType.Languages -> navController.navigate(Route.LanguagesScreen.name)
         ScreenType.Search -> "nothing"
         ScreenType.TwoLanguages -> "nothing"
+        ScreenType.Countries -> "nothing"
     }
 }
 
