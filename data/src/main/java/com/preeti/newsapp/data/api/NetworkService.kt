@@ -16,5 +16,8 @@ interface NetworkService {
     @GET("top-headlines")
     suspend fun getNewsBySourceName(@Query("sources") sources: String): TopHeadlinesResponse
 
+    @GET("top-headlines")
+    suspend fun getNewsByLanguage(@Query("language") language: String): TopHeadlinesResponse
+
 }
 

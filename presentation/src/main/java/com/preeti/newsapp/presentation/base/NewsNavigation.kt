@@ -14,6 +14,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.preeti.newsapp.presentation.R
 import com.preeti.newsapp.presentation.languages.LanguagesRoute
+import com.preeti.newsapp.presentation.newsbylanguage.NewsByLanguageRoute
 import com.preeti.newsapp.presentation.newsbysource.NewsBySourceRoute
 import com.preeti.newsapp.presentation.newssources.NewsSourcesRoute
 import com.preeti.newsapp.presentation.start.ScreenType
@@ -26,6 +27,7 @@ sealed class Route(val name: String) {
     data object NewsSourcesScreen : Route("newsSourcesScreen")
     data object NewsBySourceScreen : Route("newsBySourceScreen/{sourceId}")
     data object LanguagesScreen : Route("languagesScreen")
+    data object NewsByLanguageScreen : Route("newsByLanguageScreen/{languageId}")
 }
 
 @Composable
@@ -77,10 +79,23 @@ fun NewsNavHost() {
             })
         }
 
-
         composable(route = Route.LanguagesScreen.name) {
             LanguagesRoute(onLanguageClick = {
+                navController.navigate("newsByLanguageScreen/$it")
+            }, onBackNavigation = {
+                navController.popBackStack()
+            })
+        }
 
+        composable(
+            route = Route.NewsByLanguageScreen.name, arguments = listOf(
+                navArgument("languageId") {
+                    type = NavType.StringType
+                })
+        ) {
+            val languageId: String = it.arguments?.getString("languageId") ?: ""
+            NewsByLanguageRoute(languageId = languageId, onNewsClick = {
+                openCustomChromeTab(context, it)
             }, onBackNavigation = {
                 navController.popBackStack()
             })
