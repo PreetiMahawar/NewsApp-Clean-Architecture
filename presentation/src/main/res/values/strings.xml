@@ -7,6 +7,7 @@
     <string name="news_by_source">News By Source</string>
     <string name="languages">Languages</string>
     <string name="news_by_languages">News By Language</string>
+    <string name="select_two_languages">Select Two Languages</string>
     <string name="two_languages">Select Two Languages</string>
     <string name="news_by_two_languages">News By Two Languages</string>
     <string name="countries">Countries</string>
@@ -21,4 +22,5 @@
     <string name="error_message">Something went wrong</string>
     <string name="search_icon">Search Icon</string>
     <string name="clear_search">Clear Search</string>
+    <string name="select_language">Select Exactly Two Languages</string>
 </resources>
