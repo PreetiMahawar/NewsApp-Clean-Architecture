@@ -16,6 +16,7 @@ import com.preeti.newsapp.presentation.R
 import com.preeti.newsapp.presentation.languages.LanguagesRoute
 import com.preeti.newsapp.presentation.languages.TwoLanguagesRoute
 import com.preeti.newsapp.presentation.newsbylanguage.NewsByLanguageRoute
+import com.preeti.newsapp.presentation.newsbylanguage.NewsByTwoLanguagesRoute
 import com.preeti.newsapp.presentation.newsbysource.NewsBySourceRoute
 import com.preeti.newsapp.presentation.newssources.NewsSourcesRoute
 import com.preeti.newsapp.presentation.start.ScreenType
@@ -30,6 +31,7 @@ sealed class Route(val name: String) {
     data object LanguagesScreen : Route("languagesScreen")
     data object NewsByLanguageScreen : Route("newsByLanguageScreen/{languageId}")
     data object TwoLanguagesScreen : Route("twoLanguagesScreen")
+    data object NewsByTwoLanguagesScreen : Route("newsByTwoLanguagesScreen/{languageId1}/{languageId2}")
 }
 
 @Composable
@@ -105,9 +107,29 @@ fun NewsNavHost() {
 
         composable(route = Route.TwoLanguagesScreen.name) {
             TwoLanguagesRoute(onLanguageSelect = { languageId1, languageId2 ->
+                navController.navigate("newsByTwoLanguagesScreen/${languageId1}/${languageId2}")
             }, onBackNavigation = {
                 navController.popBackStack()
             })
+        }
+
+        composable(
+            route = Route.NewsByTwoLanguagesScreen.name,
+            arguments = listOf(navArgument("languageId1") {
+                type = NavType.StringType
+            }, navArgument("languageId2") {
+                type = NavType.StringType
+            })
+        ) {
+            val languageId1 = it.arguments?.getString("languageId1") ?: ""
+            val languageId2 = it.arguments?.getString("languageId2") ?: ""
+            NewsByTwoLanguagesRoute(
+                onNewsClick = {
+                    openCustomChromeTab(context, it)
+                }, onBackNavigation = {
+                    navController.popBackStack()
+                }, languageId1 = languageId1, languageId2 = languageId2
+            )
         }
 
     }
