@@ -16,6 +16,7 @@ import com.preeti.newsapp.presentation.R
 import com.preeti.newsapp.presentation.countries.CountriesRoute
 import com.preeti.newsapp.presentation.languages.LanguagesRoute
 import com.preeti.newsapp.presentation.languages.TwoLanguagesRoute
+import com.preeti.newsapp.presentation.newsbycountry.NewsByCountryRoute
 import com.preeti.newsapp.presentation.newsbylanguage.NewsByLanguageRoute
 import com.preeti.newsapp.presentation.newsbylanguage.NewsByTwoLanguagesRoute
 import com.preeti.newsapp.presentation.newsbysource.NewsBySourceRoute
@@ -34,6 +35,7 @@ sealed class Route(val name: String) {
     data object TwoLanguagesScreen : Route("twoLanguagesScreen")
     data object NewsByTwoLanguagesScreen : Route("newsByTwoLanguagesScreen/{languageId1}/{languageId2}")
     data object CountriesScreen : Route("countriesScreen")
+    data object NewsByCountryScreen : Route("newsByCountryScreen/{countryId}")
 }
 
 @Composable
@@ -136,7 +138,21 @@ fun NewsNavHost() {
 
         composable(route = Route.CountriesScreen.name) {
             CountriesRoute(onCountryClick = {
+                navController.navigate("newsByCountryScreen/$it")
+            }, onBackNavigation = {
+                navController.popBackStack()
+            })
+        }
 
+        composable(
+            route = Route.NewsByCountryScreen.name, arguments = listOf(
+                navArgument("countryId") {
+                    type = NavType.StringType
+                })
+        ) {
+            val countryId: String = it.arguments?.getString("countryId") ?: ""
+            NewsByCountryRoute(countryId = countryId, onNewsClick = {
+                openCustomChromeTab(context, it)
             }, onBackNavigation = {
                 navController.popBackStack()
             })

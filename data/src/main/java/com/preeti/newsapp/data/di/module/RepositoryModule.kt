@@ -2,6 +2,7 @@ package com.preeti.newsapp.data.di.module
 
 import com.preeti.newsapp.data.repository.CountriesRepositoryImpl
 import com.preeti.newsapp.data.repository.LanguagesRepositoryImpl
+import com.preeti.newsapp.data.repository.NewsByCountryRepositoryImpl
 import com.preeti.newsapp.data.repository.NewsByLanguageRepositoryImpl
 import com.preeti.newsapp.data.repository.NewsBySourceRepositoryImpl
 import com.preeti.newsapp.data.repository.NewsByTwoLanguagesRepositoryImpl
@@ -9,6 +10,7 @@ import com.preeti.newsapp.data.repository.NewsSourcesRepositoryImpl
 import com.preeti.newsapp.data.repository.TopHeadlineRepositoryImpl
 import com.preeti.newsapp.domain.repository.CountriesRepository
 import com.preeti.newsapp.domain.repository.LanguagesRepository
+import com.preeti.newsapp.domain.repository.NewsByCountryRepository
 import com.preeti.newsapp.domain.repository.NewsByLanguageRepository
 import com.preeti.newsapp.domain.repository.NewsBySourceRepository
 import com.preeti.newsapp.domain.repository.NewsByTwoLanguagesRepository
@@ -51,6 +53,10 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun bindCountriesRepository(impl: CountriesRepositoryImpl): CountriesRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindNewsByCountryRepository(impl: NewsByCountryRepositoryImpl): NewsByCountryRepository
 
     /*@Provides
     @Singleton
