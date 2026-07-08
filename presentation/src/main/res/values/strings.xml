@@ -17,7 +17,8 @@
     <string name="desc_news_sources">Get News through News-Sources</string>
     <string name="desc_news_by_languages">Get News through Languages</string>
     <string name="desc_news_by_country">Get News through Countries</string>
-    <string name="search_news">Search News</string>
+   // <string name="search_news">Search News</string>
+    <string name="search_news_1">Search with at least 3 characters</string>
     <string name="no_data">No Data</string>
     <string name="error_message">Something went wrong</string>
     <string name="search_icon">Search Icon</string>

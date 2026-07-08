@@ -21,6 +21,7 @@ import com.preeti.newsapp.presentation.newsbylanguage.NewsByLanguageRoute
 import com.preeti.newsapp.presentation.newsbylanguage.NewsByTwoLanguagesRoute
 import com.preeti.newsapp.presentation.newsbysource.NewsBySourceRoute
 import com.preeti.newsapp.presentation.newssources.NewsSourcesRoute
+import com.preeti.newsapp.presentation.search.SearchRoute
 import com.preeti.newsapp.presentation.start.ScreenType
 import com.preeti.newsapp.presentation.start.StartingRoute
 import com.preeti.newsapp.presentation.topheadline.TopHeadlineRoute
@@ -36,6 +37,7 @@ sealed class Route(val name: String) {
     data object NewsByTwoLanguagesScreen : Route("newsByTwoLanguagesScreen/{languageId1}/{languageId2}")
     data object CountriesScreen : Route("countriesScreen")
     data object NewsByCountryScreen : Route("newsByCountryScreen/{countryId}")
+    data object SearchScreen : Route("searchScreen")
 }
 
 @Composable
@@ -158,6 +160,14 @@ fun NewsNavHost() {
             })
         }
 
+        composable(route = Route.SearchScreen.name) {
+            SearchRoute(onNewsClick = {
+                openCustomChromeTab(context, it)
+            }, onBackNavigation = {
+                navController.popBackStack()
+            })
+        }
+
     }
 }
 
@@ -174,7 +184,7 @@ fun startScreen(type: ScreenType, navController: NavController) {
         ScreenType.Languages -> navController.navigate(Route.LanguagesScreen.name)
         ScreenType.TwoLanguages ->  navController.navigate(Route.TwoLanguagesScreen.name)
         ScreenType.Countries -> navController.navigate(Route.CountriesScreen.name)
-        ScreenType.Search -> "nothing"
+        ScreenType.Search -> navController.navigate(Route.SearchScreen.name)
     }
 }
 
